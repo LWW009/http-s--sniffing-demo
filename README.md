@@ -1,0 +1,13 @@
+Some hold-ups during HTTP Sniffing
+
+1，'ChmodBPF 权限脚本‘这里的‘脚本’是什么意思？可以理解为我下载Wireshark的时候，Wireshark安装包里的某个file用来支持我访问/dev/bpf* 接口的一个工具吗？What is ‘ChmodBPF’? Can I understand it as a specific file, or say a tool, within the installation package, for supporting the access to /dev/bpf* interface?
+> In the Wireshark installation package (the ‘pre-requisite’), a script named ‘ChmodBPF’ is automatically attached, for configuring the capture authorization at initial stage. For further clarification, the ‘script’ represents executable file (generally it is shell or other executable files), which helps to automatically run some system commands.
+
+2，/dev/bpf* 这个可以理解为如果要抓流量数据，比如从这个接口access，才可能抓到流量中的比如某台正在使用这个流量的某台设备的username和password吧？Can I understand /dev/bpf* as a ‘door to open’ for capturing the network traffic? it requires a ‘key’ to open the door and, as such, the plaintext credentials (e.g. username and password) of any device connected to the same network can only be captured.
+> The /dev/bpf* can be seen as an ‘agent’ between WLAN and Wireshark. It acts like ‘access control’ key. As long the application wants to capture anything from the internet, unlock the key and only then the access permission is granted. bpf is an abbreviation of Berkeley Packet Filter, which works like a ‘filter layer’ between the system and the packets flowing through the internet.
+
+3，我现在用的是家里的wifi，为啥捕获接口里有那么多接口？Why there are list of interfaces show up in my Wireshark main page, even if only one of them is connected (which is en0 = home WiFi)?
+> Each entry represents a different ‘virtual’ or ‘backup’ interface. For example, lo0 = local loopback interface (self-access); en0 = home Wifi main interface; en1, bridge, utun, awdl, vmnet = virtual interfaces used by features like AirDrop, VPN, VirtualBox, Apple Wireless Direct Link, and others.
+
+4，我现在在家，比如我想抓我所在城市机场wifi里的流量里某台设备的password，我需要去机场使用机场wifi吗？I’m home right now, but what if I’d capture something from a mobile device at airport in my city, do I need to physically be there and connect the airport WIFI?
+> The answer is yes, moreover, it can’t be 100% certainty to capture what we want. Talking about ‘infrastructure’, on top of using the same network, the network itself must be a non-isolated LAN, which means all devices under the same network can ‘see’ each other. On conditions that the device is using HTTP instead of HTTPS, Wireshark had to be ‘on’ before the data has been transmitting. Only then would the Wireshark successfully do the caption.
