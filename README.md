@@ -60,5 +60,7 @@ When using `curl` commands in the terminal to simulate a login process (login.ph
 Generally, passwords should not be retrieved to client server (web brower or `curl` userinfo.php) after logging in, it should only be verified with login.php, for example, to cross-check whether the login password is in accordance with the one in data center. The userinfo.php should only retrieve a 'verified proof', for example, session ID or token, instead of the password itself.
 
 It implies:
+
 1, login state might not be properly managed (e.g. no session or token validation)
+
 2， If user data can be retrieved using `curl` without sending any cookies, session ID, or token, it indicates that the endpoint is unintentionally exposed and lacks proper access control.
