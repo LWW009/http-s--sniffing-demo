@@ -1,6 +1,19 @@
+# 🔤
+#### ChmodBPF 
+Can I understand it as a specific file - or say a tool - bundled with the Wireshark installation package, designed to configure access permissions for the `/dev/bpf*` interface? In this context, what exactly does the term 'script' mean? Is it accurate to say that when I install Wireshark, this script is included as a helper tool to enable access to the packet capture interface?  ChmodBPF 权限脚本 - 这里的‘脚本’是什么意思？可以理解为我下载Wireshark的时候，Wireshark安装包里的某个file用来支持我访问 `/dev/bpf*` 接口的一个工具吗？
+> In the Wireshark installation package (as a prerequisite), a script named ChmodBPF is automatically included to configure capture permissions during the initial setup. Specifically, this script is an executable file—typically a shell script—that automates the execution of system commands required to grant Wireshark access to packet capture interfaces such as /dev/bpf*.
+#### /dev/bpf*
+Can I understand `/dev/bpf*` as a kind of "gateway" for capturing network traffic? In other words, does accessing this interface serve as a prerequisite for tools like Wireshark to capture packets—potentially including sensitive information such as plaintext usernames and passwords of devices on the same network? Is it fair to say that access to this interface is like a "key" that unlocks the ability to observe network data?  `/dev/bpf*` 可以理解为如果要抓流量数据，从这个接口access，才可能抓到流量中的比如正在使用这个流量的某台设备的username和password？
+> The `/dev/bpf*` devices can be seen as intermediaries between the network interface (e.g., WLAN) and user-space applications like Wireshark. They act as controlled entry points for packet capture. When an application like Wireshark wants to capture traffic, it must first gain access to these devices. BPF stands for Berkeley Packet Filter, which serves as a kernel-level filtering mechanism that controls which packets are passed to the user-space program.
+#### 'GET' & 'POST'
 
-# Q&A
-## HTTP
+
+
+
+
+
+
+
 3, request.method的`GET`和`POST`区别是什么？我curl用`GET`可以抓到么？ Any difference between `GET` and `POST`? Can I also get credentials by `GET`?
 > parameters are passed and exposed on the URL with `GET`, whilst it is passed and hidden in the body with `POST` (but still in plain text under HTTP). Yes, with `curl -X GET http://xxx.com?username=abc&password=123`.
 ---
