@@ -1,12 +1,6 @@
 
 # Q&A
 ## HTTP
-1, 'ChmodBPF 权限脚本‘这里的‘脚本’是什么意思？可以理解为我下载Wireshark的时候，Wireshark安装包里的某个file用来支持我访问 /dev/bpf*  接口的一个工具吗？What is ‘ChmodBPF’? Can I understand it as a specific file, or say a tool, within the installation package, for supporting the access to /dev/bpf* interface?
-> In the Wireshark installation package (the ‘pre-requisite’), a script named ‘ChmodBPF’ is automatically attached, for configuring the capture authorization at initial stage. For further clarification, the ‘script’ represents executable file (generally it is shell or other executable files), which helps to automatically run some system commands.
----
-2, /dev/bpf* 这个可以理解为如果要抓流量数据，比如从这个接口access，才可能抓到流量中的比如某台正在使用这个流量的某台设备的username和password吧？Can I understand /dev/bpf* as a ‘door to open’ for capturing the network traffic? it requires a ‘key’ to open the door and, as such, the plaintext credentials (e.g. username and password) of any device connected to the same network can only be captured.
-> The /dev/bpf* can be seen as an ‘agent’ between WLAN and Wireshark. It acts like ‘access control’ key. As long the application wants to capture anything from the internet, unlock the key and only then the access permission is granted. bpf is an abbreviation of Berkeley Packet Filter, which works like a ‘filter layer’ between the system and the packets flowing through the internet.
----
 3, request.method的`GET`和`POST`区别是什么？我curl用`GET`可以抓到么？ Any difference between `GET` and `POST`? Can I also get credentials by `GET`?
 > parameters are passed and exposed on the URL with `GET`, whilst it is passed and hidden in the body with `POST` (but still in plain text under HTTP). Yes, with `curl -X GET http://xxx.com?username=abc&password=123`.
 ---
